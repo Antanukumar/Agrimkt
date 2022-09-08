@@ -1,0 +1,33 @@
+<?php
+require_once('header1.php');
+require_once('connection.php');
+require_once('impfuns.php');
+
+
+?>
+<div class="center-content" ">
+    <div class=" mandi">
+    <h2> Commodity wise District wise Price</h2>
+    <?php
+    $sql = "SELECT *  from  agriproduct";
+
+    $result = $conn->query($sql);
+    $ct = 0;
+
+    while ($rowp = mysqli_fetch_array($result)) {
+        $mid = $rowp['prodid'];
+        $mname = $rowp['prod_name'];
+
+        $ct++;
+        echo "<a href='pcommod.php?md=$mid' >$mname</a>";
+        if ($ct > 3) {
+            echo "<br>";
+            $ct = 0;
+        }
+    }
+    ?>
+</div>
+</div>
+<?php
+require_once('footer1.php');
+?>
